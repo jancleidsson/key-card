@@ -12,4 +12,13 @@
     <string name="search_password">Search Pass:</string>
     <string name="search">Search</string>
     <string name="change_main_password">Change Main Password</string>
+
+
+    <!--MainActivity-->
+    <string name="error_on_save_main_password">An error occurs while save the main password, please try again. </string>
+
+    <!--SearchPasswordActivity-->
+    <string name="error_on_save_password">An error occurs while save the password, please try again. </string>
+    <string name="password_saved">Saved!</string>
+    <string name="error_on_search_password">An error occurs while search the password </string>
 </resources>
