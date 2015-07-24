@@ -65,14 +65,13 @@ public class SearchPasswordActivity extends Activity {
 
                 if((keyPassword.length() == 2) && (valuePassword.length() == 4) && (Integer.parseInt(keyPassword) <= Constants.MAX_PASSWORDS) && saveKeyCode(keyPassword, valuePassword)){
                     Toast.makeText(SearchPasswordActivity.this, getResources().getString(R.string.password_saved), Toast.LENGTH_SHORT).show();
-
-                    mEditTextValuePassword.setText("");
-                    mEditTextKeyPassword.setText("");
-                    mEditTextKeyPassword.requestFocus();
-
                 }else{
                     Toast.makeText(SearchPasswordActivity.this, getResources().getString(R.string.error_on_save_password), Toast.LENGTH_SHORT).show();
                 }
+
+                mEditTextValuePassword.setText("");
+                mEditTextKeyPassword.setText("");
+                mEditTextKeyPassword.requestFocus();
             }
         });
 
@@ -82,10 +81,10 @@ public class SearchPasswordActivity extends Activity {
                 String keyPasswordToSearch = mEditTextSearchPassword.getText().toString();
                 if(keyPasswordToSearch.length() == 2 && getKeyCode(keyPasswordToSearch).length() == 4){
                     Toast.makeText(SearchPasswordActivity.this, getKeyCode(keyPasswordToSearch), Toast.LENGTH_SHORT).show();
-                    mEditTextSearchPassword.setText("");
                 }else{
                     Toast.makeText(SearchPasswordActivity.this, getResources().getString(R.string.error_on_search_password), Toast.LENGTH_SHORT).show();
                 }
+                mEditTextSearchPassword.setText("");
             }
         });
     }

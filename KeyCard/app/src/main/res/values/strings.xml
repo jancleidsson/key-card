@@ -15,10 +15,12 @@
 
 
     <!--MainActivity-->
-    <string name="error_on_save_main_password">An error occurs while save the main password, please try again. </string>
+    <string name="error_on_save_main_password">An error occurs while save the main password, please try again.</string>
+    <string name="error_on_check_main_password">Password invalid, please try again.</string>
+    <string name="check">"Check"</string>
 
     <!--SearchPasswordActivity-->
-    <string name="error_on_save_password">An error occurs while save the password, please try again. </string>
+    <string name="error_on_save_password">An error occurs while save the password, please try again.</string>
     <string name="password_saved">Saved!</string>
-    <string name="error_on_search_password">An error occurs while search the password </string>
+    <string name="error_on_search_password">An error occurs while search the password.</string>
 </resources>

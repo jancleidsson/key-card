@@ -17,9 +17,8 @@ public class MainActivity extends Activity {
     private HashMap<Integer, Integer> mPasswordsMap;
     private SharedPreferences mSharedPreferences;
     private boolean mForceChangePassword;
-    private String mMainPassword;
 
-    private Button buttonSavePassword;
+    private Button buttonSaveCheckPassword;
     private EditText editTextInputPassword;
 
     @Override
@@ -34,27 +33,32 @@ public class MainActivity extends Activity {
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //If the application has a main password this activity will finalize
-        if(mSharedPreferences.contains(Constants.MAIN_KEY) && !mForceChangePassword){
-            startActivity(new Intent(MainActivity.this, SearchPasswordActivity.class));
-            finish();
-        }
-
-        buttonSavePassword = (Button) findViewById(R.id.buttonSavePassword);
+        buttonSaveCheckPassword = (Button) findViewById(R.id.buttonSaveCheckPassword);
         editTextInputPassword = (EditText) findViewById(R.id.editTextPassword);
 
-        buttonSavePassword.setOnClickListener(
+        //If the application has a main password this activity will finalize
+        if(mSharedPreferences.contains(Constants.MAIN_KEY) && !mForceChangePassword){
+            buttonSaveCheckPassword.setText(getResources().getString(R.string.check), null);
+            setCheckAction();
+        }else{
+            setSaveAction();
+        }
+    }
+
+    private void setSaveAction(){
+        buttonSaveCheckPassword.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                         //Getting the password
-                        mMainPassword = editTextInputPassword.getText().toString();
+                        String mainPassword = editTextInputPassword.getText().toString();
 
                         //Saving the main password and check if it was saved in shared preference
-                        boolean result = mSharedPreferences.edit().putString(Constants.MAIN_KEY, mMainPassword).commit();
+                        boolean result = mSharedPreferences.edit().putString(Constants.MAIN_KEY, mainPassword).commit();
                         if (result) {
                             startActivity(new Intent(MainActivity.this, SearchPasswordActivity.class));
+                            finish();
                         } else {
                             Toast.makeText(MainActivity.this, getResources().getString(R.string.error_on_save_main_password), Toast.LENGTH_SHORT).show();
                         }
@@ -62,4 +66,28 @@ public class MainActivity extends Activity {
                 }
         );
     }
+
+    private void setCheckAction(){
+        buttonSaveCheckPassword.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Getting password to check
+                        String passwordToCheck = editTextInputPassword.getText().toString();
+                        String mainPassword =  mSharedPreferences.getString(Constants.MAIN_KEY, new String());
+
+                        //Check if user put the correct password
+                        if (mainPassword.equalsIgnoreCase(passwordToCheck)) {
+                            startActivity(new Intent(MainActivity.this, SearchPasswordActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(MainActivity.this, getResources().getString(R.string.error_on_check_main_password), Toast.LENGTH_SHORT).show();
+                            editTextInputPassword.setText("");
+                            editTextInputPassword.requestFocus();
+                        }
+                    }
+                }
+        );
+    }
+
 }
