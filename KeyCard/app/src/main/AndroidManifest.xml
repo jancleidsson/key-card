@@ -20,6 +20,10 @@
             android:name=".SearchPasswordActivity"
             android:label="@string/title_activity_search_password" >
         </activity>
+        <activity
+            android:name=".ListPasswordsActivity"
+            android:label="@string/title_activity_list_passwords" >
+        </activity>
     </application>
 
 </manifest>

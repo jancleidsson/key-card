@@ -78,7 +78,9 @@ public class MainActivity extends Activity {
 
                         //Check if user put the correct password
                         if (mainPassword.equalsIgnoreCase(passwordToCheck)) {
-                            startActivity(new Intent(MainActivity.this, SearchPasswordActivity.class));
+                            Intent intentSeachActivity = new Intent(MainActivity.this, SearchPasswordActivity.class);
+                            intentSeachActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intentSeachActivity);
                             finish();
                         } else {
                             Toast.makeText(MainActivity.this, getResources().getString(R.string.error_on_check_main_password), Toast.LENGTH_SHORT).show();

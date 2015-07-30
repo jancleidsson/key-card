@@ -23,4 +23,5 @@
     <string name="error_on_save_password">An error occurs while save the password, please try again.</string>
     <string name="password_saved">Saved!</string>
     <string name="error_on_search_password">An error occurs while search the password.</string>
+    <string name="title_activity_list_passwords">ListPasswordsActivity</string>
 </resources>

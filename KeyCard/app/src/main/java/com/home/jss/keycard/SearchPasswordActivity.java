@@ -3,22 +3,14 @@ package com.home.jss.keycard;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.provider.Browser;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 public class SearchPasswordActivity extends Activity {
 
@@ -27,6 +19,7 @@ public class SearchPasswordActivity extends Activity {
     private Button mChangeMainPassword;
     private Button mSavePassword;
     private Button mButtonSearchPassword;
+    private Button mButtonListPassword;
 
     private EditText mEditTextKeyPassword;
     private EditText mEditTextValuePassword;
@@ -42,6 +35,8 @@ public class SearchPasswordActivity extends Activity {
         mChangeMainPassword = (Button) findViewById(R.id.buttonChangePassword);
         mSavePassword = (Button) findViewById(R.id.buttonSavePassword);
         mButtonSearchPassword = (Button) findViewById(R.id.buttonSearchPassword);
+        mButtonListPassword = (Button) findViewById(R.id.buttonListPasswords);
+
 
         mEditTextKeyPassword = (EditText) findViewById(R.id.editTextKeyPassword);
         mEditTextValuePassword = (EditText) findViewById(R.id.editTextValuePassword);
@@ -52,6 +47,7 @@ public class SearchPasswordActivity extends Activity {
             public void onClick(View v) {
                 Intent intentMainActivity = new Intent(SearchPasswordActivity.this, MainActivity.class);
                 intentMainActivity.putExtra(Constants.CHANGE_MAIN_PASSWORD_BUNDLE_KEY, true);
+                intentMainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intentMainActivity);
             }
         });
@@ -85,6 +81,14 @@ public class SearchPasswordActivity extends Activity {
                     Toast.makeText(SearchPasswordActivity.this, getResources().getString(R.string.error_on_search_password), Toast.LENGTH_SHORT).show();
                 }
                 mEditTextSearchPassword.setText("");
+            }
+        });
+
+        mButtonListPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentListPasswordActivity = new Intent(SearchPasswordActivity.this, ListPasswordsActivity.class);
+                startActivity(intentListPasswordActivity);
             }
         });
     }
